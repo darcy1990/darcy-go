@@ -6,7 +6,7 @@ import (
 
 var a string
 
-func abc() {
+func funcCallFunc() {
 	a = "G"
 	print(a)
 	f1()
