@@ -1,27 +1,34 @@
 package main
 
 import (
-	"fmt"
-	"function"
-	"arr"
+	"os"
+	"flag"
+)
+
+var NewLine = flag.Bool("n", false, "print on newline")
+
+const (
+	Space = " "
+	Newline = "\n"
 )
 
 
 func main() {
-	fv := func() {
-		println("Hello World")
+	flag.PrintDefaults()
+	flag.Parse()
+	var s string = ""
+	for i := 0; i < flag.NArg(); i++ {
+		if i > 0 {
+			s += Space
+		}
+		s += flag.Arg(i)
 	}
-	fv()
-	fmt.Printf("%T",fv)
 	
-	for i := 0; i < 10; i++ {
-		fact := function.Factorial(i)
-		fmt.Printf("%d ", fact)
+	if *NewLine { // -n is parsed, flag becomes true
+		s += Newline
 	}
-	
-	println("")
-	var sli = []int {1, 2, 3}
-	println(arr.MinSlice(sli))
-	println(arr.MaxSlice(sli))
+	os.Stdout.WriteString(s)
 }
+
+
 
